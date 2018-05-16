@@ -28,7 +28,7 @@ class App extends React.Component {
     render () {
         return (
         <div>
-            <LineChart dataOne={companyInfo[0]} dataTwo={historicalStockData[0]} />
+            <LineChart dataOne={companyInfo[0]} dataTwo={historicalStockData[0]} startdate="4/17/2018" enddate="5/5/2018" />
         </div>
         );
     }

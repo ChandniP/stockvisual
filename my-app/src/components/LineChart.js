@@ -9,14 +9,23 @@ class LineChart extends React.Component {
     Object.keys(unordered).sort().forEach(function(key) {
       ordered[key] = unordered[key];
     });
-    //console.log(data);
+    this.startDate = props.startdate;
+    this.endDate=props.enddate;
+    const neworder={};
+    Object.keys(ordered).forEach(function(key){
+      var d1 = new Date(props.startdate);
+      var d2 = new Date(props.enddate);
+      var d3 = new Date(key);
+      if (d1 <= d3 && d3 <= d2){
+        neworder[key]=ordered[key];
+      }
+    })
     this.highchartsOptions = {
       title: {
         text: props.dataOne.name
-        // text: props.dataTwo.name
       },
       xAxis: {
-        categories: Object.keys(ordered),
+        categories: Object.keys(neworder),
       },
       yAxis: {
         title: {
@@ -30,7 +39,7 @@ class LineChart extends React.Component {
           symbol: 'square'
         },
         // data: props.dataTwo.dailyClosePrice[props.dataTwo.dailyClosePrice.keys()]
-        data:Object.values(ordered)
+        data:Object.values(neworder)
       }]
     }
   }
