@@ -51,6 +51,11 @@ class LineChart extends React.Component {
   render() {
     return <div id='chart'></div>
   }
+
+  componentWillUnmount() {
+    this.chart.destroy();
+  }
+
 }
 
 export default LineChart;
