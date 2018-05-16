@@ -4,14 +4,19 @@ import Highcharts from 'highcharts';
 class LineChart extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.dataTwo.dailyClosePrice);
+    const unordered=props.dataTwo.dailyClosePrice[0];
+    const ordered={};
+    Object.keys(unordered).sort().forEach(function(key) {
+      ordered[key] = unordered[key];
+    });
+    //console.log(data);
     this.highchartsOptions = {
       title: {
         text: props.dataOne.name
         // text: props.dataTwo.name
       },
       xAxis: {
-        categories: Object.keys(props.dataTwo.dailyClosePrice[0]),
+        categories: Object.keys(ordered),
       },
       yAxis: {
         title: {
@@ -25,7 +30,7 @@ class LineChart extends React.Component {
           symbol: 'square'
         },
         // data: props.dataTwo.dailyClosePrice[props.dataTwo.dailyClosePrice.keys()]
-        data:Object.values(props.dataTwo.dailyClosePrice[0])
+        data:Object.values(ordered)
       }]
     }
   }
